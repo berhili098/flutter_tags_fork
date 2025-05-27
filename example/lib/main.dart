@@ -1,12 +1,13 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_tags/flutter_tags.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -15,23 +16,22 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: MyHomePage(title: 'Flutter Tags'),
+      home: const MyHomePage(title: 'Flutter Tags'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>
-    with SingleTickerProviderStateMixin {
-  TabController _tabController;
-  ScrollController _scrollViewController;
+class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  late ScrollController _scrollViewController;
 
   final List<String> _list = [
     '0',
@@ -81,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage>
 
   String _onPressed = '';
 
-  List _icon = [Icons.home, Icons.language, Icons.headset];
+  final List<IconData> _icon = [Icons.home, Icons.language, Icons.headset];
 
   @override
   void initState() {
@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage>
     _items = _list.toList();
   }
 
-  List _items;
+  late List<String> _items;
 
   final GlobalKey<TagsState> _tagStateKey = GlobalKey<TagsState>();
 
@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage>
           headerSliverBuilder: (BuildContext context, bool boxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                title: Text("flutter tags"),
+                title: const Text("flutter tags"),
                 centerTitle: true,
                 pinned: true,
                 expandedHeight: 0,
@@ -114,8 +114,8 @@ class _MyHomePageState extends State<MyHomePage>
                 bottom: TabBar(
                   isScrollable: false,
                   indicatorSize: TabBarIndicatorSize.label,
-                  labelStyle: TextStyle(fontSize: 18.0),
-                  tabs: [
+                  labelStyle: const TextStyle(fontSize: 18.0),
+                  tabs: const [
                     Tab(text: "Demo 1"),
                     Tab(text: "Demo 2"),
                   ],
@@ -132,14 +132,11 @@ class _MyHomePageState extends State<MyHomePage>
                   SliverList(
                       delegate: SliverChildListDelegate([
                     Container(
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: Colors.grey[300], width: 0.5))),
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      decoration:
+                          BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey[300]!, width: 0.5))),
+                      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       child: ExpansionTile(
-                        title: Text("Settings"),
+                        title: const Text("Settings"),
                         children: <Widget>[
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -154,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage>
                                             _removeButton = !_removeButton;
                                           });
                                         }),
-                                    Text('Remove Button')
+                                    const Text('Remove Button')
                                   ],
                                 ),
                                 onTap: () {
@@ -163,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage>
                                   });
                                 },
                               ),
-                              Padding(
+                              const Padding(
                                 padding: EdgeInsets.all(5),
                               ),
                               GestureDetector(
@@ -176,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage>
                                             _symmetry = !_symmetry;
                                           });
                                         }),
-                                    Text('Symmetry')
+                                    const Text('Symmetry')
                                   ],
                                 ),
                                 onTap: () {
@@ -185,17 +182,15 @@ class _MyHomePageState extends State<MyHomePage>
                                   });
                                 },
                               ),
-                              Padding(
+                              const Padding(
                                 padding: EdgeInsets.all(5),
                               ),
-                              DropdownButton(
-                                hint: _column == 0
-                                    ? Text("Not set")
-                                    : Text(_column.toString()),
+                              DropdownButton<int>(
+                                hint: _column == 0 ? const Text("Not set") : Text(_column.toString()),
                                 items: _buildItems(),
                                 onChanged: (a) {
                                   setState(() {
-                                    _column = a;
+                                    _column = a!;
                                   });
                                 },
                               ),
@@ -211,11 +206,10 @@ class _MyHomePageState extends State<MyHomePage>
                                         value: _horizontalScroll,
                                         onChanged: (a) {
                                           setState(() {
-                                            _horizontalScroll =
-                                                !_horizontalScroll;
+                                            _horizontalScroll = !_horizontalScroll;
                                           });
                                         }),
-                                    Text('Horizontal scroll')
+                                    const Text('Horizontal scroll')
                                   ],
                                 ),
                                 onTap: () {
@@ -234,7 +228,7 @@ class _MyHomePageState extends State<MyHomePage>
                                             _singleItem = !_singleItem;
                                           });
                                         }),
-                                    Text('Single Item')
+                                    const Text('Single Item')
                                   ],
                                 ),
                                 onTap: () {
@@ -247,7 +241,7 @@ class _MyHomePageState extends State<MyHomePage>
                           ),
                           Column(
                             children: <Widget>[
-                              Text('Font Size'),
+                              const Text('Font Size'),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
@@ -262,18 +256,17 @@ class _MyHomePageState extends State<MyHomePage>
                                     },
                                   ),
                                   Text(_fontSize.toString()),
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 20),
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 20),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     height: 30,
                                     width: 30,
                                     //color: Colors.blueGrey,
                                     child: IconButton(
-                                      padding: EdgeInsets.all(0),
+                                      padding: EdgeInsets.zero,
                                       //color: Colors.white,
-                                      icon: Icon(Icons.add),
+                                      icon: const Icon(Icons.add),
                                       onPressed: () {
                                         setState(() {
                                           _count++;
@@ -283,18 +276,17 @@ class _MyHomePageState extends State<MyHomePage>
                                       },
                                     ),
                                   ),
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 5),
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 5),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     height: 30,
                                     width: 30,
                                     //color: Colors.grey,
                                     child: IconButton(
-                                      padding: EdgeInsets.all(0),
+                                      padding: EdgeInsets.zero,
                                       //color: Colors.white,
-                                      icon: Icon(Icons.refresh),
+                                      icon: const Icon(Icons.refresh),
                                       onPressed: () {
                                         setState(() {
                                           _items = _list.toList();
@@ -309,19 +301,19 @@ class _MyHomePageState extends State<MyHomePage>
                         ],
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.all(20),
                     ),
                     _tags1,
                     Container(
-                        padding: EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20),
                         child: Column(
                           children: <Widget>[
-                            Divider(
+                            const Divider(
                               color: Colors.blueGrey,
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(vertical: 20),
+                              padding: const EdgeInsets.symmetric(vertical: 20),
                               child: Text(_onPressed),
                             ),
                           ],
@@ -334,14 +326,11 @@ class _MyHomePageState extends State<MyHomePage>
                   SliverList(
                       delegate: SliverChildListDelegate([
                     Container(
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: Colors.grey[300], width: 0.5))),
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      decoration:
+                          BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey[300]!, width: 0.5))),
+                      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       child: ExpansionTile(
-                        title: Text("Settings"),
+                        title: const Text("Settings"),
                         children: <Widget>[
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -353,11 +342,10 @@ class _MyHomePageState extends State<MyHomePage>
                                         value: _withSuggesttions,
                                         onChanged: (a) {
                                           setState(() {
-                                            _withSuggesttions =
-                                                !_withSuggesttions;
+                                            _withSuggesttions = !_withSuggesttions;
                                           });
                                         }),
-                                    Text('Suggestions')
+                                    const Text('Suggestions')
                                   ],
                                 ),
                                 onTap: () {
@@ -366,15 +354,15 @@ class _MyHomePageState extends State<MyHomePage>
                                   });
                                 },
                               ),
-                              Padding(
+                              const Padding(
                                 padding: EdgeInsets.all(20),
                               ),
-                              DropdownButton(
+                              DropdownButton<String>(
                                 hint: Text(_itemCombine),
                                 items: _buildItems2(),
                                 onChanged: (val) {
                                   setState(() {
-                                    _itemCombine = val;
+                                    _itemCombine = val!;
                                   });
                                 },
                               ),
@@ -390,11 +378,10 @@ class _MyHomePageState extends State<MyHomePage>
                                         value: _horizontalScroll,
                                         onChanged: (a) {
                                           setState(() {
-                                            _horizontalScroll =
-                                                !_horizontalScroll;
+                                            _horizontalScroll = !_horizontalScroll;
                                           });
                                         }),
-                                    Text('Horizontal scroll')
+                                    const Text('Horizontal scroll')
                                   ],
                                 ),
                                 onTap: () {
@@ -413,7 +400,7 @@ class _MyHomePageState extends State<MyHomePage>
                                             _startDirection = !_startDirection;
                                           });
                                         }),
-                                    Text('Start Direction')
+                                    const Text('Start Direction')
                                   ],
                                 ),
                                 onTap: () {
@@ -426,7 +413,7 @@ class _MyHomePageState extends State<MyHomePage>
                           ),
                           Column(
                             children: <Widget>[
-                              Text('Font Size'),
+                              const Text('Font Size'),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
@@ -448,19 +435,19 @@ class _MyHomePageState extends State<MyHomePage>
                         ],
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.all(20),
                     ),
                     _tags2,
                     Container(
-                        padding: EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20),
                         child: Column(
                           children: <Widget>[
-                            Divider(
+                            const Divider(
                               color: Colors.blueGrey,
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(vertical: 20),
+                              padding: const EdgeInsets.symmetric(vertical: 20),
                               child: Text(_onPressed),
                             ),
                           ],
@@ -490,11 +477,11 @@ class _MyHomePageState extends State<MyHomePage>
           index: index,
           title: item,
           pressEnabled: true,
-          activeColor: Colors.blueGrey[600],
+          activeColor: Colors.blueGrey[600] ?? Colors.red,
           singleItem: _singleItem,
           splashColor: Colors.green,
           combine: ItemTagsCombine.withTextBefore,
-          image: index > 0 && index < 5
+          image: (index > 0 && index < 5)
               ? ItemTagsImage(
                   //image: AssetImage("img/p$index.jpg"),
                   child: Image.network(
@@ -504,7 +491,7 @@ class _MyHomePageState extends State<MyHomePage>
                 ))
               : (1 == 1
                   ? ItemTagsImage(
-                      image: NetworkImage(
+                      image: const NetworkImage(
                           "https://d32ogoqmya1dw8.cloudfront.net/images/serc/empty_user_icon_256.v2.png"),
                     )
                   : null),
@@ -523,8 +510,7 @@ class _MyHomePageState extends State<MyHomePage>
                   },
                 )
               : null,
-          textScaleFactor:
-              utf8.encode(item.substring(0, 1)).length > 2 ? 0.8 : 1,
+          textScaler: TextScaler.linear(utf8.encode(item.substring(0, 1)).length > 2 ? 0.8 : 1),
           textStyle: TextStyle(
             fontSize: _fontSize,
           ),
@@ -535,20 +521,17 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   // Position for popup menu
-  Offset _tapPosition;
+  Offset? _tapPosition;
 
   Widget get _tags2 {
     //popup Menu
-    final RenderBox overlay = Overlay.of(context).context?.findRenderObject();
+    final RenderBox overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
 
     ItemTagsCombine combine = ItemTagsCombine.onlyText;
 
     switch (_itemCombine) {
       case 'onlyText':
         combine = ItemTagsCombine.onlyText;
-        break;
-      case 'onlyIcon':
-        combine = ItemTagsCombine.onlyIcon;
         break;
       case 'onlyIcon':
         combine = ItemTagsCombine.onlyIcon;
@@ -568,12 +551,11 @@ class _MyHomePageState extends State<MyHomePage>
     }
 
     return Tags(
-      key: Key("2"),
+      key: const Key("2"),
       symmetry: _symmetry,
       columns: _column,
       horizontalScroll: _horizontalScroll,
-      verticalDirection:
-          _startDirection ? VerticalDirection.up : VerticalDirection.down,
+      verticalDirection: _startDirection ? VerticalDirection.up : VerticalDirection.down,
       textDirection: _startDirection ? TextDirection.rtl : TextDirection.ltr,
       heightHorizontalScroll: 60 * (_fontSize / 14),
       textField: _textField,
@@ -587,14 +569,12 @@ class _MyHomePageState extends State<MyHomePage>
             index: index,
             title: item,
             pressEnabled: false,
-            activeColor: Colors.green[400],
+            activeColor: Colors.green.shade400,
             combine: combine,
             image: index > 0 && index < 5
                 ? ItemTagsImage(image: AssetImage("img/p$index.jpg"))
                 : (1 == 1
-                    ? ItemTagsImage(
-                        image: NetworkImage(
-                            "https://image.flaticon.com/icons/png/512/44/44948.png"))
+                    ? ItemTagsImage(image: NetworkImage("https://image.flaticon.com/icons/png/512/44/44948.png"))
                     : null),
             icon: (item == '0' || item == '1' || item == '2')
                 ? ItemTagsIcon(
@@ -610,8 +590,7 @@ class _MyHomePageState extends State<MyHomePage>
                 return true;
               },
             ),
-            textScaleFactor:
-                utf8.encode(item.substring(0, 1)).length > 2 ? 0.8 : 1,
+            textScaler: TextScaler.linear((utf8.encode(item.substring(0, 1)).length > 2 ? 0.8 : 1)),
             textStyle: TextStyle(
               fontSize: _fontSize,
             ),
@@ -622,11 +601,11 @@ class _MyHomePageState extends State<MyHomePage>
                     //semanticLabel: item,
                     items: <PopupMenuEntry>[
                   PopupMenuItem(
-                    child: Text(item, style: TextStyle(color: Colors.blueGrey)),
                     enabled: false,
+                    child: Text(item, style: const TextStyle(color: Colors.blueGrey)),
                   ),
-                  PopupMenuDivider(),
-                  PopupMenuItem(
+                  const PopupMenuDivider(),
+                  const PopupMenuItem(
                     value: 1,
                     child: Row(
                       children: <Widget>[
@@ -637,11 +616,8 @@ class _MyHomePageState extends State<MyHomePage>
                   ),
                 ],
                     context: context,
-                    position: RelativeRect.fromRect(
-                        _tapPosition & Size(40, 40),
-                        Offset.zero &
-                            overlay
-                                .size) // & RelativeRect.fromLTRB(65.0, 40.0, 0.0, 0.0),
+                    position: RelativeRect.fromRect(_tapPosition! & const Size(40, 40),
+                        Offset.zero & overlay.size) // & RelativeRect.fromLTRB(65.0, 40.0, 0.0, 0.0),
                     )
                 .then((value) {
               if (value == 1) Clipboard.setData(ClipboardData(text: item));
@@ -656,7 +632,7 @@ class _MyHomePageState extends State<MyHomePage>
     return TagsTextField(
       autofocus: false,
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       textStyle: TextStyle(
         fontSize: _fontSize,
         //height: 1
@@ -682,7 +658,7 @@ class _MyHomePageState extends State<MyHomePage>
               "lest",
               "炫舞时代"
             ]
-          : null,
+          : [],
       onSubmitted: (String str) {
         setState(() {
           _items.add(str);
@@ -691,56 +667,56 @@ class _MyHomePageState extends State<MyHomePage>
     );
   }
 
-  List<DropdownMenuItem> _buildItems() {
-    List<DropdownMenuItem> list = [];
+  List<DropdownMenuItem<int>> _buildItems() {
+    List<DropdownMenuItem<int>> list = [];
 
     int count = 19;
 
     list.add(
-      DropdownMenuItem(
-        child: Text("Not set"),
+      const DropdownMenuItem<int>(
         value: 0,
+        child: Text("Not set"),
       ),
     );
 
     for (int i = 1; i < count; i++)
       list.add(
-        DropdownMenuItem(
-          child: Text(i.toString()),
+        DropdownMenuItem<int>(
           value: i,
+          child: Text(i.toString()),
         ),
       );
 
     return list;
   }
 
-  List<DropdownMenuItem> _buildItems2() {
-    List<DropdownMenuItem> list = [];
+  List<DropdownMenuItem<String>> _buildItems2() {
+    List<DropdownMenuItem<String>> list = [];
 
-    list.add(DropdownMenuItem(
-      child: Text("onlyText"),
+    list.add(const DropdownMenuItem<String>(
       value: 'onlyText',
+      child: Text("onlyText"),
     ));
 
-    list.add(DropdownMenuItem(
-      child: Text("onlyIcon"),
+    list.add(const DropdownMenuItem<String>(
       value: 'onlyIcon',
+      child: Text("onlyIcon"),
     ));
-    list.add(DropdownMenuItem(
-      child: Text("onlyImage"),
+    list.add(const DropdownMenuItem<String>(
       value: 'onlyImage',
+      child: Text("onlyImage"),
     ));
-    list.add(DropdownMenuItem(
-      child: Text("imageOrIconOrText"),
+    list.add(const DropdownMenuItem<String>(
       value: 'imageOrIconOrText',
+      child: Text("imageOrIconOrText"),
     ));
-    list.add(DropdownMenuItem(
-      child: Text("withTextBefore"),
+    list.add(const DropdownMenuItem<String>(
       value: 'withTextBefore',
+      child: Text("withTextBefore"),
     ));
-    list.add(DropdownMenuItem(
-      child: Text("withTextAfter"),
+    list.add(const DropdownMenuItem<String>(
       value: 'withTextAfter',
+      child: Text("withTextAfter"),
     ));
 
     return list;

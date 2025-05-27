@@ -1,3 +1,9 @@
+## [1.0.0] - 2025-05-27.
+
+* `[Updated]` - Flutter to the latest version 3.32.0.
+* `[Updated]` - Gradle to support every upcoming updates.
+* `[Reset]` - Android folder.
+
 ## [0.4.9+1] - 2020-11-11.
 
 * `[Fixed]` - Issue #66.
