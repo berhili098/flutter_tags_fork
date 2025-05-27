@@ -1,6 +1,6 @@
 name: flutter_tags_fork
 description: Creating selectable and input tags (TextField) has never been easier.
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/berhili098/flutter_tags_fork
 
 environment:
@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_lints: ^5.0.0
 
 dev_dependencies:
   flutter_test:

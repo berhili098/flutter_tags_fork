@@ -1,3 +1,6 @@
+## [1.0.2] - 2025-05-27.
+
+* `[Fixed]` - Fix the example code.
 ## [1.0.1] - 2025-05-27.
 
 * `[Fixed]` - Analyzer.

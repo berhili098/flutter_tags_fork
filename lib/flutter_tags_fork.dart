@@ -1,4 +1,4 @@
-library flutter_tags_fork;
+library ;
 
 export 'src/item_tags.dart';
 export 'src/suggestions_textfield.dart';

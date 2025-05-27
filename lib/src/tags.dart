@@ -5,10 +5,10 @@ import 'util/custom_wrap.dart';
 
 ///ItemBuilder
 ///
-typedef Widget ItemBuilder(int index);
+typedef ItemBuilder = Widget Function(int index);
 
 class Tags extends StatefulWidget {
-  Tags(
+  const Tags(
       {this.columns,
       this.itemCount = 0,
       this.symmetry = false,
@@ -23,9 +23,8 @@ class Tags extends StatefulWidget {
       this.textDirection = TextDirection.ltr,
       this.itemBuilder,
       this.textField,
-      Key? key})
-      : assert(itemCount >= 0),
-        super(key: key);
+      super.key})
+      : assert(itemCount >= 0);
 
   ///specific number of columns
   final int? columns;
@@ -109,7 +108,7 @@ class TagsState extends State<Tags> {
     }
 
     Widget child;
-    if (widget.horizontalScroll && !widget.symmetry)
+    if (widget.horizontalScroll && !widget.symmetry) {
       child = Container(
         height: widget.heightHorizontalScroll,
         color: Colors.transparent,
@@ -121,7 +120,7 @@ class TagsState extends State<Tags> {
           children: _buildItems(),
         ),
       );
-    else
+    } else {
       child = CustomWrap(
         key: _containerKey,
         alignment: widget.alignment,
@@ -136,6 +135,7 @@ class TagsState extends State<Tags> {
         crossAxisAlignment: WrapCrossAlignment.end,
         children: _buildItems(),
       );
+    }
 
     return DataListInherited(
       list: _list,
@@ -161,7 +161,9 @@ class TagsState extends State<Tags> {
                   final List<DataList> lst = _list.where((l) => l.title == str).toList();
 
                   if (lst.isNotEmpty) {
-                    lst.forEach((d) => d.showDuplicate = true);
+                    for (var d in lst) {
+                      d.showDuplicate = true;
+                    }
                     return;
                   }
                 }
@@ -176,17 +178,17 @@ class TagsState extends State<Tags> {
 
     List<Widget> itemList = List<Widget>.generate(widget.itemCount, (i) {
       final Widget item = widget.itemBuilder!(i);
-      if (widget.symmetry)
-        return Container(
+      if (widget.symmetry) {
+        return SizedBox(
           width: _widthCalc(),
           child: item,
         );
-      else if (widget.horizontalScroll)
-        return Container(
+      } else if (widget.horizontalScroll)
+      {  return Container(
           margin: EdgeInsets.symmetric(horizontal: widget.spacing),
           alignment: Alignment.center,
           child: item,
-        );
+        );}
       return item;
     });
 
@@ -222,9 +224,8 @@ class TagsState extends State<Tags> {
 
 /// Inherited Widget
 class DataListInherited extends InheritedWidget {
-  DataListInherited(
-      {Key? key, required this.list, required this.symmetry, required this.itemCount, required Widget child})
-      : super(key: key, child: child);
+  const DataListInherited(
+      {super.key, required this.list, required this.symmetry, required this.itemCount, required super.child});
 
   final List<DataList> list;
   final bool symmetry;
@@ -248,8 +249,11 @@ class DataList extends ValueNotifier implements Item {
         _active = active,
         super(active);
 
+  @override
   final String title;
+  @override
   final dynamic customData;
+  @override
   final int? index;
 
   bool get showDuplicate {
@@ -265,6 +269,7 @@ class DataList extends ValueNotifier implements Item {
     notifyListeners();
   }
 
+  @override
   get active => _active;
   bool _active;
   set active(bool a) {

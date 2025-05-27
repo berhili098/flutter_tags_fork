@@ -14,7 +14,7 @@ typedef OnRemovedCallback = bool Function();
 enum ItemTagsCombine { onlyText, onlyIcon, onlyImage, imageOrIconOrText, withTextBefore, withTextAfter }
 
 class ItemTags extends StatefulWidget {
-  ItemTags({
+  const ItemTags({
     required this.index,
     required this.title,
     this.textScaler,
@@ -127,10 +127,10 @@ class ItemTags extends StatefulWidget {
   final OnLongPressedCallback? onLongPressed;
 
   @override
-  _ItemTagsState createState() => _ItemTagsState();
+  ItemTagsState createState() => ItemTagsState();
 }
 
-class _ItemTagsState extends State<ItemTags> {
+class ItemTagsState extends State<ItemTags> {
   final double _initBorderRadius = 50;
 
   late DataListInherited _dataListInherited;
@@ -140,10 +140,18 @@ class _ItemTagsState extends State<ItemTags> {
     // Get List<DataList> from Tags widget
     _dataListInherited = DataListInherited.of(context);
 
-    // set List length
+    // set List length - but fill with proper DataList objects instead of nulls
     if (_dataListInherited.list.length < _dataListInherited.itemCount) {
-      _dataListInherited.list.length = _dataListInherited.itemCount;
+      // Instead of just setting length, add proper DataList objects
+      while (_dataListInherited.list.length < _dataListInherited.itemCount) {
+        _dataListInherited.list.add(DataList(
+          title: '',
+          index: _dataListInherited.list.length,
+          active: false,
+        ));
+      }
     }
+    _dataList = _dataListInherited.list.elementAt(widget.index);
 
     if (_dataListInherited.list.length > (widget.index + 1) &&
         _dataListInherited.list.elementAt(widget.index).title != widget.title) {
@@ -210,19 +218,14 @@ class _ItemTagsState extends State<ItemTags> {
         borderRadius: widget.borderRadius ?? BorderRadius.circular(_initBorderRadius),
         highlightColor: widget.pressEnabled ? widget.highlightColor : Colors.transparent,
         splashColor: widget.pressEnabled ? widget.splashColor : Colors.transparent,
-        child: Container(
-            decoration: BoxDecoration(
-                border: widget.border ?? Border.all(color: widget.activeColor, width: 0.5),
-                borderRadius: widget.borderRadius ?? BorderRadius.circular(_initBorderRadius)),
-            padding: widget.padding * ((fontSize ?? 12) / 14),
-            child: _combine),
         onTap: widget.pressEnabled
             ? () {
                 if (widget.singleItem) {
                   _singleItem(_dataListInherited, _dataList);
                   _dataList.active = true;
-                } else
+                } else {
                   _dataList.active = !_dataList.active;
+                }
 
                 widget.onPressed?.call(Item(
                     index: widget.index,
@@ -235,14 +238,21 @@ class _ItemTagsState extends State<ItemTags> {
             ? () => widget.onLongPressed?.call(Item(
                 index: widget.index, title: _dataList.title, active: _dataList.active, customData: widget.customData))
             : null,
+        child: Container(
+            decoration: BoxDecoration(
+                border: widget.border ?? Border.all(color: widget.activeColor, width: 0.5),
+                borderRadius: widget.borderRadius ?? BorderRadius.circular(_initBorderRadius)),
+            padding: widget.padding * ((fontSize ?? 12) / 14),
+            child: _combine),
       ),
     );
   }
 
   Widget get _combine {
-    if (widget.image != null)
+    if (widget.image != null) {
       assert((widget.image?.image != null && widget.image?.child == null) ||
           (widget.image?.child != null && widget.image?.image == null));
+    }
     final Widget text = Text(
       widget.title,
       softWrap: false,
@@ -300,14 +310,18 @@ class _ItemTagsState extends State<ItemTags> {
         break;
       case ItemTagsCombine.withTextBefore:
         list.add(text);
-        if (image != text)
+        if (image != text) {
           list.add(image);
-        else if (icon != text) list.add(icon);
+        } else if (icon != text) {
+          list.add(icon);
+        }
         break;
       case ItemTagsCombine.withTextAfter:
-        if (image != text)
+        if (image != text) {
           list.add(image);
-        else if (icon != text) list.add(icon);
+        } else if (icon != text) {
+          list.add(icon);
+        }
         list.add(text);
     }
 
@@ -315,18 +329,19 @@ class _ItemTagsState extends State<ItemTags> {
         mainAxisAlignment: widget.alignment,
         mainAxisSize: MainAxisSize.min,
         children: List.generate(list.length, (i) {
-          if (i == 0 && list.length > 1)
+          if (i == 0 && list.length > 1) {
             return Flexible(
               flex: widget.combine == ItemTagsCombine.withTextAfter ? 0 : 1,
               child: list[i],
             );
+          }
           return Flexible(
             flex: widget.combine == ItemTagsCombine.withTextAfter || list.length == 1 ? 1 : 0,
             child: list[i],
           );
         }));
 
-    if (widget.removeButton != null)
+    if (widget.removeButton != null) {
       return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, mainAxisSize: MainAxisSize.min, children: <Widget>[
         Flexible(fit: _dataListInherited.symmetry ? FlexFit.tight : FlexFit.loose, flex: 2, child: row),
         Flexible(
@@ -357,6 +372,7 @@ class _ItemTagsState extends State<ItemTags> {
                   },
                 )))
       ]);
+    }
 
     return row;
   }

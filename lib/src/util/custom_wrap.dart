@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 
 /// Custom Wrap
 class CustomWrap extends MultiChildRenderObjectWidget {
-  CustomWrap({
+  const CustomWrap({
     super.key,
     this.column,
     this.symmetry,
@@ -595,17 +595,19 @@ class CustomRenderWrap extends RenderBox
         if (flipMainAxis) childMainPosition -= childMainAxisExtent;
         childParentData.offset = _getOffset(
             childMainPosition, crossAxisOffset + childCrossAxisOffset);
-        if (flipMainAxis)
+        if (flipMainAxis) {
           childMainPosition -= childBetweenSpace;
-        else
+        } else {
           childMainPosition += childMainAxisExtent + childBetweenSpace;
+        }
         child = childParentData.nextSibling;
       }
 
-      if (flipCrossAxis)
+      if (flipCrossAxis) {
         crossAxisOffset -= runBetweenSpace;
-      else
+      } else {
         crossAxisOffset += runCrossAxisExtent + runBetweenSpace;
+      }
     }
   }
 
@@ -616,11 +618,12 @@ class CustomRenderWrap extends RenderBox
 
   @override
   void paint(PaintingContext context, Offset offset) {
-    if (_hasVisualOverflow)
+    if (_hasVisualOverflow) {
       context.pushClipRect(
           needsCompositing, offset, Offset.zero & size, defaultPaint);
-    else
+    } else {
       defaultPaint(context, offset);
+    }
   }
 
   @override

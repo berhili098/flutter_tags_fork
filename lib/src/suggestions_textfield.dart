@@ -13,16 +13,16 @@ typedef OnChangedCallback = void Function(String string);
 typedef OnSubmittedCallback = void Function(String string);
 
 class SuggestionsTextField extends StatefulWidget {
-  SuggestionsTextField({required this.tagsTextField, this.onSubmitted});
+  const SuggestionsTextField({super.key, required this.tagsTextField, this.onSubmitted});
 
   final TagsTextField tagsTextField;
   final OnSubmittedCallback? onSubmitted;
 
   @override
-  _SuggestionsTextFieldState createState() => _SuggestionsTextFieldState();
+  SuggestionsTextFieldState createState() => SuggestionsTextFieldState();
 }
 
-class _SuggestionsTextFieldState extends State<SuggestionsTextField> {
+class SuggestionsTextFieldState extends State<SuggestionsTextField> {
   final _controller = TextEditingController();
 
   List<String> _matches = [];
@@ -62,7 +62,7 @@ class _SuggestionsTextFieldState extends State<SuggestionsTextField> {
               softWrap: false,
               overflow: TextOverflow.fade,
               style: TextStyle(
-                height: widget.tagsTextField.textStyle.height == null ? 1 : widget.tagsTextField.textStyle.height,
+                height: widget.tagsTextField.textStyle.height ?? 1,
                 fontSize: _fontSize,
                 color: widget.tagsTextField.suggestionTextColor,
               ),
@@ -73,9 +73,9 @@ class _SuggestionsTextFieldState extends State<SuggestionsTextField> {
           controller: _controller,
           enabled: widget.tagsTextField.enabled,
           autofocus: widget.tagsTextField.autofocus ?? true,
-          keyboardType: widget.tagsTextField.keyboardType ?? null,
+          keyboardType: widget.tagsTextField.keyboardType,
           textCapitalization: widget.tagsTextField.textCapitalization ?? TextCapitalization.none,
-          maxLength: widget.tagsTextField.maxLength ?? null,
+          maxLength: widget.tagsTextField.maxLength,
           maxLines: 1,
           autocorrect: widget.tagsTextField.autocorrect ?? false,
           style:
