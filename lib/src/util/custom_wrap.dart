@@ -233,7 +233,7 @@ class CustomRenderWrap extends RenderBox
           break;
       }
     }
-  
+
     return true;
   }
 
@@ -475,7 +475,8 @@ class CustomRenderWrap extends RenderBox
       if (childCount > 0) runMainAxisExtent += spacing;
       runCrossAxisExtent = math.max(runCrossAxisExtent, childCrossAxisExtent);
       childCount += 1;
-      final WrapParentData childParentData = child.parentData! as WrapParentData;
+      final WrapParentData childParentData =
+          child.parentData! as WrapParentData;
       childParentData._runIndex = runMetrics.length;
       child = childParentData.nextSibling;
     }
@@ -559,7 +560,8 @@ class CustomRenderWrap extends RenderBox
           break;
         case WrapAlignment.end:
           childLeadingSpace = mainAxisFreeSpace;
-          if (symmetry == true) childLeadingSpace = mainAxisFreeSpace - spacing / 2;
+          if (symmetry == true)
+            childLeadingSpace = mainAxisFreeSpace - spacing / 2;
           break;
         case WrapAlignment.center:
           childLeadingSpace = mainAxisFreeSpace / 2.0;
@@ -586,7 +588,8 @@ class CustomRenderWrap extends RenderBox
       if (flipCrossAxis) crossAxisOffset -= runCrossAxisExtent;
 
       while (child != null) {
-        final WrapParentData childParentData = child.parentData! as WrapParentData;
+        final WrapParentData childParentData =
+            child.parentData! as WrapParentData;
         if (childParentData._runIndex != i) break;
         final double childMainAxisExtent = _getMainAxisExtent(child);
         final double childCrossAxisExtent = _getCrossAxisExtent(child);

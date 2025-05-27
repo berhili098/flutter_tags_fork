@@ -27,7 +27,8 @@ class MyHomePage extends StatefulWidget {
   MyHomePageState createState() => MyHomePageState();
 }
 
-class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
+class MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   late ScrollController _scrollViewController;
 
@@ -131,9 +132,17 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
                   delegate: SliverChildListDelegate([
                     Container(
                       decoration: BoxDecoration(
-                        border: Border(bottom: BorderSide(color: Colors.grey[300]!, width: 0.5)),
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.grey[300]!,
+                            width: 0.5,
+                          ),
+                        ),
                       ),
-                      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 10,
+                      ),
                       child: ExpansionTile(
                         title: const Text("Settings"),
                         children: <Widget>[
@@ -183,7 +192,9 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
                               ),
                               const Padding(padding: EdgeInsets.all(5)),
                               DropdownButton<int>(
-                                hint: _column == 0 ? const Text("Not set") : Text(_column.toString()),
+                                hint: _column == 0
+                                    ? const Text("Not set")
+                                    : Text(_column.toString()),
                                 items: _buildItems(),
                                 onChanged: (a) {
                                   setState(() {
@@ -203,7 +214,8 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
                                       value: _horizontalScroll,
                                       onChanged: (a) {
                                         setState(() {
-                                          _horizontalScroll = !_horizontalScroll;
+                                          _horizontalScroll =
+                                              !_horizontalScroll;
                                         });
                                       },
                                     ),
@@ -255,7 +267,11 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
                                     },
                                   ),
                                   Text(_fontSize.toString()),
-                                  const Padding(padding: EdgeInsets.symmetric(horizontal: 20)),
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                    ),
+                                  ),
                                   SizedBox(
                                     height: 30,
                                     width: 30,
@@ -273,7 +289,11 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
                                       },
                                     ),
                                   ),
-                                  const Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 5,
+                                    ),
+                                  ),
                                   SizedBox(
                                     height: 30,
                                     width: 30,
@@ -303,7 +323,10 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
                       child: Column(
                         children: <Widget>[
                           const Divider(color: Colors.blueGrey),
-                          Padding(padding: const EdgeInsets.symmetric(vertical: 20), child: Text(_onPressed)),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: Text(_onPressed),
+                          ),
                         ],
                       ),
                     ),
@@ -317,9 +340,17 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
                   delegate: SliverChildListDelegate([
                     Container(
                       decoration: BoxDecoration(
-                        border: Border(bottom: BorderSide(color: Colors.grey[300]!, width: 0.5)),
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.grey[300]!,
+                            width: 0.5,
+                          ),
+                        ),
                       ),
-                      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 10,
+                      ),
                       child: ExpansionTile(
                         title: const Text("Settings"),
                         children: <Widget>[
@@ -333,7 +364,8 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
                                       value: _withSuggesttions,
                                       onChanged: (a) {
                                         setState(() {
-                                          _withSuggesttions = !_withSuggesttions;
+                                          _withSuggesttions =
+                                              !_withSuggesttions;
                                         });
                                       },
                                     ),
@@ -368,7 +400,8 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
                                       value: _horizontalScroll,
                                       onChanged: (a) {
                                         setState(() {
-                                          _horizontalScroll = !_horizontalScroll;
+                                          _horizontalScroll =
+                                              !_horizontalScroll;
                                         });
                                       },
                                     ),
@@ -434,7 +467,10 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
                       child: Column(
                         children: <Widget>[
                           const Divider(color: Colors.blueGrey),
-                          Padding(padding: const EdgeInsets.symmetric(vertical: 20), child: Text(_onPressed)),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: Text(_onPressed),
+                          ),
                         ],
                       ),
                     ),
@@ -485,7 +521,9 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
                         ),
                       )
                     : null),
-          icon: (item == '0' || item == '1' || item == '2') ? ItemTagsIcon(icon: _icon[int.parse(item)]) : null,
+          icon: (item == '0' || item == '1' || item == '2')
+              ? ItemTagsIcon(icon: _icon[int.parse(item)])
+              : null,
           removeButton: _removeButton
               ? ItemTagsRemoveButton(
                   onRemoved: () {
@@ -496,7 +534,9 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
                   },
                 )
               : null,
-          textScaler: TextScaler.linear(utf8.encode(item.substring(0, 1)).length > 2 ? 0.8 : 1),
+          textScaler: TextScaler.linear(
+            utf8.encode(item.substring(0, 1)).length > 2 ? 0.8 : 1,
+          ),
           textStyle: TextStyle(fontSize: _fontSize),
           onPressed: (item) => debugPrint(item.title),
         );
@@ -509,7 +549,8 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
 
   Widget get _tags2 {
     //popup Menu
-    final RenderBox? overlay = Overlay.of(context).context.findRenderObject() as RenderBox?;
+    final RenderBox? overlay =
+        Overlay.of(context).context.findRenderObject() as RenderBox?;
 
     ItemTagsCombine combine = ItemTagsCombine.onlyText;
 
@@ -539,7 +580,9 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
       symmetry: _symmetry,
       columns: _column,
       horizontalScroll: _horizontalScroll,
-      verticalDirection: _startDirection ? VerticalDirection.up : VerticalDirection.down,
+      verticalDirection: _startDirection
+          ? VerticalDirection.up
+          : VerticalDirection.down,
       textDirection: _startDirection ? TextDirection.rtl : TextDirection.ltr,
       heightHorizontalScroll: 60 * (_fontSize / 14),
       textField: _textField,
@@ -558,9 +601,15 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
             image: index > 0 && index < 5
                 ? ItemTagsImage(image: AssetImage("img/p$index.jpg"))
                 : (1 == 1
-                      ? ItemTagsImage(image: NetworkImage("https://image.flaticon.com/icons/png/512/44/44948.png"))
+                      ? ItemTagsImage(
+                          image: NetworkImage(
+                            "https://image.flaticon.com/icons/png/512/44/44948.png",
+                          ),
+                        )
                       : null),
-            icon: (item == '0' || item == '1' || item == '2') ? ItemTagsIcon(icon: _icon[int.parse(item)]) : null,
+            icon: (item == '0' || item == '1' || item == '2')
+                ? ItemTagsIcon(icon: _icon[int.parse(item)])
+                : null,
             removeButton: ItemTagsRemoveButton(
               backgroundColor: Colors.green[900],
               onRemoved: () {
@@ -570,7 +619,9 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
                 return true;
               },
             ),
-            textScaler: TextScaler.linear((utf8.encode(item.substring(0, 1)).length > 2 ? 0.8 : 1)),
+            textScaler: TextScaler.linear(
+              (utf8.encode(item.substring(0, 1)).length > 2 ? 0.8 : 1),
+            ),
             textStyle: TextStyle(fontSize: _fontSize),
           ),
           onTapDown: (details) => _tapPosition = details.globalPosition,
@@ -580,12 +631,20 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
               items: <PopupMenuEntry>[
                 PopupMenuItem(
                   enabled: false,
-                  child: Text(item, style: const TextStyle(color: Colors.blueGrey)),
+                  child: Text(
+                    item,
+                    style: const TextStyle(color: Colors.blueGrey),
+                  ),
                 ),
                 const PopupMenuDivider(),
                 const PopupMenuItem(
                   value: 1,
-                  child: Row(children: <Widget>[Icon(Icons.content_copy), Text("Copy text")]),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(Icons.content_copy),
+                      Text("Copy text"),
+                    ],
+                  ),
                 ),
               ],
               context: context,
@@ -658,13 +717,43 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
   List<DropdownMenuItem<String>> _buildItems2() {
     List<DropdownMenuItem<String>> list = [];
 
-    list.add(const DropdownMenuItem<String>(value: 'onlyText', child: Text("onlyText")));
+    list.add(
+      const DropdownMenuItem<String>(
+        value: 'onlyText',
+        child: Text("onlyText"),
+      ),
+    );
 
-    list.add(const DropdownMenuItem<String>(value: 'onlyIcon', child: Text("onlyIcon")));
-    list.add(const DropdownMenuItem<String>(value: 'onlyImage', child: Text("onlyImage")));
-    list.add(const DropdownMenuItem<String>(value: 'imageOrIconOrText', child: Text("imageOrIconOrText")));
-    list.add(const DropdownMenuItem<String>(value: 'withTextBefore', child: Text("withTextBefore")));
-    list.add(const DropdownMenuItem<String>(value: 'withTextAfter', child: Text("withTextAfter")));
+    list.add(
+      const DropdownMenuItem<String>(
+        value: 'onlyIcon',
+        child: Text("onlyIcon"),
+      ),
+    );
+    list.add(
+      const DropdownMenuItem<String>(
+        value: 'onlyImage',
+        child: Text("onlyImage"),
+      ),
+    );
+    list.add(
+      const DropdownMenuItem<String>(
+        value: 'imageOrIconOrText',
+        child: Text("imageOrIconOrText"),
+      ),
+    );
+    list.add(
+      const DropdownMenuItem<String>(
+        value: 'withTextBefore',
+        child: Text("withTextBefore"),
+      ),
+    );
+    list.add(
+      const DropdownMenuItem<String>(
+        value: 'withTextAfter',
+        child: Text("withTextAfter"),
+      ),
+    );
 
     return list;
   }

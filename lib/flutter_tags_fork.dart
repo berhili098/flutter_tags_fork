@@ -1,4 +1,4 @@
-library ;
+library;
 
 export 'src/item_tags.dart';
 export 'src/suggestions_textfield.dart';

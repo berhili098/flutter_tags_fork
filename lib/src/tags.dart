@@ -102,7 +102,8 @@ class TagsState extends State<Tags> {
   @override
   Widget build(BuildContext context) {
     // essential to avoid infinite loop of addPostFrameCallback
-    if (widget.symmetry && (MediaQuery.of(context).orientation != _orientation || _width == 0)) {
+    if (widget.symmetry &&
+        (MediaQuery.of(context).orientation != _orientation || _width == 0)) {
       _orientation = MediaQuery.of(context).orientation;
       _getWidthContext();
     }
@@ -158,7 +159,8 @@ class TagsState extends State<Tags> {
               tagsTextField: widget.textField!,
               onSubmitted: (String str) {
                 if (!widget.textField!.duplicates) {
-                  final List<DataList> lst = _list.where((l) => l.title == str).toList();
+                  final List<DataList> lst =
+                      _list.where((l) => l.title == str).toList();
 
                   if (lst.isNotEmpty) {
                     for (var d in lst) {
@@ -183,23 +185,26 @@ class TagsState extends State<Tags> {
           width: _widthCalc(),
           child: item,
         );
-      } else if (widget.horizontalScroll)
-      {  return Container(
+      } else if (widget.horizontalScroll) {
+        return Container(
           margin: EdgeInsets.symmetric(horizontal: widget.spacing),
           alignment: Alignment.center,
           child: item,
-        );}
+        );
+      }
       return item;
     });
 
-    if (widget.horizontalScroll && widget.textDirection == TextDirection.rtl) itemList = itemList.reversed.toList();
+    if (widget.horizontalScroll && widget.textDirection == TextDirection.rtl)
+      itemList = itemList.reversed.toList();
 
     if (textField == null) {
       finalList.addAll(itemList);
       return finalList;
     }
 
-    if (widget.horizontalScroll && widget.verticalDirection == VerticalDirection.up) {
+    if (widget.horizontalScroll &&
+        widget.verticalDirection == VerticalDirection.up) {
       finalList.add(textField);
       finalList.addAll(itemList);
     } else {
@@ -225,7 +230,11 @@ class TagsState extends State<Tags> {
 /// Inherited Widget
 class DataListInherited extends InheritedWidget {
   const DataListInherited(
-      {super.key, required this.list, required this.symmetry, required this.itemCount, required super.child});
+      {super.key,
+      required this.list,
+      required this.symmetry,
+      required this.itemCount,
+      required super.child});
 
   final List<DataList> list;
   final bool symmetry;
@@ -239,12 +248,18 @@ class DataListInherited extends InheritedWidget {
 
   /*static DataListInherited of(BuildContext context) =>
       context.inheritFromWidgetOfExactType(DataListInherited);*/
-  static DataListInherited of(BuildContext context) => context.dependOnInheritedWidgetOfExactType<DataListInherited>()!;
+  static DataListInherited of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<DataListInherited>()!;
 }
 
 /// Data List
 class DataList extends ValueNotifier implements Item {
-  DataList({required this.title, this.index, bool highlights = false, bool active = true, this.customData})
+  DataList(
+      {required this.title,
+      this.index,
+      bool highlights = false,
+      bool active = true,
+      this.customData})
       : _showDuplicate = highlights,
         _active = active,
         super(active);

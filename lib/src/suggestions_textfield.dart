@@ -13,7 +13,8 @@ typedef OnChangedCallback = void Function(String string);
 typedef OnSubmittedCallback = void Function(String string);
 
 class SuggestionsTextField extends StatefulWidget {
-  const SuggestionsTextField({super.key, required this.tagsTextField, this.onSubmitted});
+  const SuggestionsTextField(
+      {super.key, required this.tagsTextField, this.onSubmitted});
 
   final TagsTextField tagsTextField;
   final OnSubmittedCallback? onSubmitted;
@@ -56,7 +57,9 @@ class SuggestionsTextFieldState extends State<SuggestionsTextField> {
             //width: double.infinity,
             padding: _inputDecoration != null
                 ? _inputDecoration?.contentPadding
-                : EdgeInsets.symmetric(vertical: 6 * (_fontSize / 14), horizontal: 6 * (_fontSize / 14)),
+                : EdgeInsets.symmetric(
+                    vertical: 6 * (_fontSize / 14),
+                    horizontal: 6 * (_fontSize / 14)),
             child: Text(
               _matches.isNotEmpty ? (_matches.first) : "",
               softWrap: false,
@@ -74,12 +77,13 @@ class SuggestionsTextFieldState extends State<SuggestionsTextField> {
           enabled: widget.tagsTextField.enabled,
           autofocus: widget.tagsTextField.autofocus ?? true,
           keyboardType: widget.tagsTextField.keyboardType,
-          textCapitalization: widget.tagsTextField.textCapitalization ?? TextCapitalization.none,
+          textCapitalization: widget.tagsTextField.textCapitalization ??
+              TextCapitalization.none,
           maxLength: widget.tagsTextField.maxLength,
           maxLines: 1,
           autocorrect: widget.tagsTextField.autocorrect ?? false,
-          style:
-              widget.tagsTextField.textStyle.copyWith(height: widget.tagsTextField.textStyle.height == null ? 1 : null),
+          style: widget.tagsTextField.textStyle.copyWith(
+              height: widget.tagsTextField.textStyle.height == null ? 1 : null),
           decoration: _initialInputDecoration,
           onChanged: (str) => _checkOnChanged(str),
           onSubmitted: (str) => _onSubmitted(str),
@@ -93,17 +97,23 @@ class SuggestionsTextFieldState extends State<SuggestionsTextField> {
         InputDecoration(
             disabledBorder: InputBorder.none,
             errorBorder: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(vertical: 6 * (_fontSize / 14), horizontal: 6 * (_fontSize / 14)),
+            contentPadding: EdgeInsets.symmetric(
+                vertical: 6 * (_fontSize / 14),
+                horizontal: 6 * (_fontSize / 14)),
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(
                 color: Colors.blueGrey[300] ?? Colors.red,
               ),
             ),
             enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.blueGrey[400]?.withValues(alpha: 0.3) ?? Colors.red),
+              borderSide: BorderSide(
+                  color: Colors.blueGrey[400]?.withValues(alpha: 0.3) ??
+                      Colors.red),
             ),
             border: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.blueGrey[400]?.withValues(alpha: 0.3) ?? Colors.red),
+              borderSide: BorderSide(
+                  color: Colors.blueGrey[400]?.withValues(alpha: 0.3) ??
+                      Colors.red),
             ));
 
     return input.copyWith(
@@ -140,14 +150,19 @@ class SuggestionsTextFieldState extends State<SuggestionsTextField> {
   ///Check onChanged
   void _checkOnChanged(String str) {
     if (_suggestions != null) {
-      _matches = _suggestions?.where((String sgt) => sgt.startsWith(str)).toList() ?? [];
+      _matches =
+          _suggestions?.where((String sgt) => sgt.startsWith(str)).toList() ??
+              [];
 
       if (str.isEmpty) _matches = [];
 
       if (_matches.length > 1) _matches.removeWhere((String mtc) => mtc == str);
 
       setState(() {
-        _helperCheck = _matches.isNotEmpty || str.isEmpty || !_constraintSuggestion ? true : false;
+        _helperCheck =
+            _matches.isNotEmpty || str.isEmpty || !_constraintSuggestion
+                ? true
+                : false;
         _matches.sort((a, b) => a.compareTo(b));
       });
     }
@@ -168,7 +183,7 @@ class TagsTextField {
       this.suggestions = const [],
       this.constraintSuggestion = true,
       this.autocorrect,
-      this.autofocus ,
+      this.autofocus,
       this.hintText,
       this.hintTextColor,
       this.suggestionTextColor,

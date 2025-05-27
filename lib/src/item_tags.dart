@@ -11,7 +11,14 @@ typedef OnLongPressedCallback = void Function(Item i);
 typedef OnRemovedCallback = bool Function();
 
 /// combines icon text or image
-enum ItemTagsCombine { onlyText, onlyIcon, onlyImage, imageOrIconOrText, withTextBefore, withTextAfter }
+enum ItemTagsCombine {
+  onlyText,
+  onlyIcon,
+  onlyImage,
+  imageOrIconOrText,
+  withTextBefore,
+  withTextAfter
+}
 
 class ItemTags extends StatefulWidget {
   const ItemTags({
@@ -159,8 +166,10 @@ class ItemTagsState extends State<ItemTags> {
       _dataListInherited.list.removeAt(widget.index);
 
       // when all item list changed in data source
-      if (_dataListInherited.list.elementAt(widget.index).title != widget.title) {
-        _dataListInherited.list.removeRange(widget.index, _dataListInherited.list.length);
+      if (_dataListInherited.list.elementAt(widget.index).title !=
+          widget.title) {
+        _dataListInherited.list
+            .removeRange(widget.index, _dataListInherited.list.length);
       }
     }
 
@@ -179,7 +188,8 @@ class ItemTagsState extends State<ItemTags> {
     // removes items that have been orphaned
     if (_dataListInherited.itemCount == widget.index + 1 &&
         _dataListInherited.list.length > _dataListInherited.itemCount) {
-      _dataListInherited.list.removeRange(widget.index + 1, _dataListInherited.list.length);
+      _dataListInherited.list
+          .removeRange(widget.index + 1, _dataListInherited.list.length);
     }
 
     //print(_dataListInherited.list.length);
@@ -211,13 +221,17 @@ class ItemTagsState extends State<ItemTags> {
 
     return Material(
       color: color,
-      borderRadius: widget.borderRadius ?? BorderRadius.circular(_initBorderRadius),
+      borderRadius:
+          widget.borderRadius ?? BorderRadius.circular(_initBorderRadius),
       elevation: widget.elevation,
       //shadowColor: _dataList.highlights? Colors.red : Colors.blue,
       child: InkWell(
-        borderRadius: widget.borderRadius ?? BorderRadius.circular(_initBorderRadius),
-        highlightColor: widget.pressEnabled ? widget.highlightColor : Colors.transparent,
-        splashColor: widget.pressEnabled ? widget.splashColor : Colors.transparent,
+        borderRadius:
+            widget.borderRadius ?? BorderRadius.circular(_initBorderRadius),
+        highlightColor:
+            widget.pressEnabled ? widget.highlightColor : Colors.transparent,
+        splashColor:
+            widget.pressEnabled ? widget.splashColor : Colors.transparent,
         onTap: widget.pressEnabled
             ? () {
                 if (widget.singleItem) {
@@ -236,12 +250,17 @@ class ItemTagsState extends State<ItemTags> {
             : null,
         onLongPress: widget.onLongPressed != null
             ? () => widget.onLongPressed?.call(Item(
-                index: widget.index, title: _dataList.title, active: _dataList.active, customData: widget.customData))
+                index: widget.index,
+                title: _dataList.title,
+                active: _dataList.active,
+                customData: widget.customData))
             : null,
         child: Container(
             decoration: BoxDecoration(
-                border: widget.border ?? Border.all(color: widget.activeColor, width: 0.5),
-                borderRadius: widget.borderRadius ?? BorderRadius.circular(_initBorderRadius)),
+                border: widget.border ??
+                    Border.all(color: widget.activeColor, width: 0.5),
+                borderRadius: widget.borderRadius ??
+                    BorderRadius.circular(_initBorderRadius)),
             padding: widget.padding * ((fontSize ?? 12) / 14),
             child: _combine),
       ),
@@ -264,7 +283,8 @@ class ItemTagsState extends State<ItemTags> {
     final Widget icon = widget.icon != null
         ? Container(
             padding: widget.icon?.padding ??
-                (widget.combine == ItemTagsCombine.onlyIcon || widget.combine == ItemTagsCombine.imageOrIconOrText
+                (widget.combine == ItemTagsCombine.onlyIcon ||
+                        widget.combine == ItemTagsCombine.imageOrIconOrText
                     ? null
                     : widget.combine == ItemTagsCombine.withTextAfter
                         ? EdgeInsets.only(right: 5)
@@ -279,14 +299,16 @@ class ItemTagsState extends State<ItemTags> {
     final Widget image = widget.image != null
         ? Container(
             padding: widget.image?.padding ??
-                (widget.combine == ItemTagsCombine.onlyImage || widget.combine == ItemTagsCombine.imageOrIconOrText
+                (widget.combine == ItemTagsCombine.onlyImage ||
+                        widget.combine == ItemTagsCombine.imageOrIconOrText
                     ? null
                     : widget.combine == ItemTagsCombine.withTextAfter
                         ? EdgeInsets.only(right: 5)
                         : EdgeInsets.only(left: 5)),
             child: widget.image?.child ??
                 CircleAvatar(
-                  radius: (widget.image?.radius ?? 8) * ((widget.textStyle?.fontSize ?? 12) / 14),
+                  radius: (widget.image?.radius ?? 8) *
+                      ((widget.textStyle?.fontSize ?? 12) / 14),
                   backgroundColor: Colors.transparent,
                   backgroundImage: widget.image?.image,
                 ),
@@ -336,42 +358,57 @@ class ItemTagsState extends State<ItemTags> {
             );
           }
           return Flexible(
-            flex: widget.combine == ItemTagsCombine.withTextAfter || list.length == 1 ? 1 : 0,
+            flex: widget.combine == ItemTagsCombine.withTextAfter ||
+                    list.length == 1
+                ? 1
+                : 0,
             child: list[i],
           );
         }));
 
     if (widget.removeButton != null) {
-      return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, mainAxisSize: MainAxisSize.min, children: <Widget>[
-        Flexible(fit: _dataListInherited.symmetry ? FlexFit.tight : FlexFit.loose, flex: 2, child: row),
-        Flexible(
-            flex: 0,
-            child: FittedBox(
-                alignment: Alignment.centerRight,
-                fit: BoxFit.fill,
-                child: GestureDetector(
-                  child: Container(
-                    margin: widget.removeButton?.margin ?? EdgeInsets.only(left: 5),
-                    padding:
-                        (widget.removeButton?.padding ?? EdgeInsets.all(2)) * ((widget.textStyle?.fontSize ?? 12) / 14),
-                    decoration: BoxDecoration(
-                      color: widget.removeButton?.backgroundColor ?? Colors.black,
-                      borderRadius: widget.removeButton?.borderRadius ?? BorderRadius.circular(_initBorderRadius),
-                    ),
-                    child: Icon(
-                      Icons.clear,
-                      color: widget.removeButton?.color ?? Colors.white,
-                      size: (widget.removeButton?.size ?? 12) * ((widget.textStyle?.fontSize ?? 12) / 14),
-                    ),
-                  ),
-                  onTap: () {
-                    if (widget.removeButton?.onRemoved != null) {
-                      widget.removeButton?.onRemoved?.call();
-                      _dataListInherited.list.removeAt(widget.index);
-                    }
-                  },
-                )))
-      ]);
+      return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Flexible(
+                fit:
+                    _dataListInherited.symmetry ? FlexFit.tight : FlexFit.loose,
+                flex: 2,
+                child: row),
+            Flexible(
+                flex: 0,
+                child: FittedBox(
+                    alignment: Alignment.centerRight,
+                    fit: BoxFit.fill,
+                    child: GestureDetector(
+                      child: Container(
+                        margin: widget.removeButton?.margin ??
+                            EdgeInsets.only(left: 5),
+                        padding: (widget.removeButton?.padding ??
+                                EdgeInsets.all(2)) *
+                            ((widget.textStyle?.fontSize ?? 12) / 14),
+                        decoration: BoxDecoration(
+                          color: widget.removeButton?.backgroundColor ??
+                              Colors.black,
+                          borderRadius: widget.removeButton?.borderRadius ??
+                              BorderRadius.circular(_initBorderRadius),
+                        ),
+                        child: Icon(
+                          Icons.clear,
+                          color: widget.removeButton?.color ?? Colors.white,
+                          size: (widget.removeButton?.size ?? 12) *
+                              ((widget.textStyle?.fontSize ?? 12) / 14),
+                        ),
+                      ),
+                      onTap: () {
+                        if (widget.removeButton?.onRemoved != null) {
+                          widget.removeButton?.onRemoved?.call();
+                          _dataListInherited.list.removeAt(widget.index);
+                        }
+                      },
+                    )))
+          ]);
     }
 
     return row;
