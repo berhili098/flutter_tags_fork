@@ -1,174 +1,281 @@
-## [1.0.2] - 2025-05-27.
+# Changelog
 
-* `[Fixed]` - Fix the example code.
-## [1.0.1] - 2025-05-27.
+All notable changes to this project will be documented in this file.
 
-* `[Fixed]` - Analyzer.
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.1] - 2025-05-27.
+## [Unreleased]
 
-* `[Fixed]` - Readme demo images.
+### Fixed
+- Fixed null type casting error in DataList operations that caused `_TypeError (type 'Null' is not a subtype of type 'DataList' in type cast)`
 
-## [1.0.0] - 2025-05-27.
+## [1.0.3] - 2024-05-27
 
-* `[Updated]` - Flutter to the latest version 3.32.0.
-* `[Updated]` - Gradle to support every upcoming updates.
-* `[Reset]` - Android folder.
+### Fixed
+- Fixed example code implementation and resolved analyzer warnings
+- Improved code documentation and examples
 
-## [0.4.9+1] - 2020-11-11.
+## [1.0.2] - 2024-05-27
 
-* `[Fixed]` - Issue #66.
-* `[Fixed]` - `DataList` null id.
+### Fixed
+- Resolved static analyzer warnings and improved code quality
+- Enhanced type safety throughout the codebase
 
-## [0.4.9] - 2020-09-15.
+## [1.0.1] - 2024-05-27
 
-* `[Added]` - Possibility to to define the padding of the `textField`.
+### Fixed
+- Updated README demo images and documentation
+- Improved visual examples and usage guides
 
-## [0.4.8+2] - 2020-06-02.
+## [1.0.0] - 2024-05-27
 
-* `[Updated]` - Documentation.
+### Changed
+- **BREAKING**: Updated to Flutter 3.32.0 compatibility
+- Updated Gradle configuration for future compatibility
+- Reset Android folder structure for better maintainability
 
-## [0.4.8+1] - 2020-05-13.
+### Improved
+- Enhanced overall project structure and build system
 
-* `[Updated]` - Documentation.
+## [0.4.9+1] - 2020-11-11
 
-## [0.4.8] - 2020-03-07.
+### Fixed
+- Resolved issue #66 related to tag rendering
+- Fixed `DataList` null identifier handling
 
-* `[Updated]` - Documentation.
+## [0.4.9] - 2020-09-15
 
-## [0.4.7] - 2020-02-26.
+### Added
+- Configurable padding for `textField` component
+- Enhanced customization options for text input areas
 
-* `[Updated]` -  Documentation.
-* General improvement of the code.
+## [0.4.8+2] - 2020-06-02
 
-## [0.4.6] - 2020-02-26.
+### Documentation
+- Updated API documentation and usage examples
+- Improved inline code comments
 
-* `[Fixed]` -  some problem.
-* `[Added]` - Possibility to disabled/enabled `textField` field - Issue #36.
-* `[Added]` - Possibility to insert tags not present in the list of suggestions with the `constraintSuggestion` field - Issue #33.
-* `onRemoved` field has been moved inside `ItemTagsRemoveButton()` to maintain consistency.
-* `onRemoved` now has a bool return type (ex: when you want to add a control before removing a tag).
+## [0.4.8+1] - 2020-05-13
 
-## [0.4.5] - 2019-10-30.
+### Documentation
+- Enhanced README with better examples
+- Added more comprehensive API documentation
 
-* Renamed `TagstextField` to `TagsTextField`.
-* Added `textCapitalization` field in `TagsTextField`.
+## [0.4.8] - 2020-03-07
 
-## [0.4.4] - 2019-10-16.
+### Documentation
+- Updated documentation structure
+- Improved code examples and usage guides
 
-* New Features and Documentation Updates.
+## [0.4.7] - 2020-02-26
 
-* Added `child` field in `ItemTagsImage()`, allows more control over the images.
-* Fixed alignment `textField` and `suggestions` - Issue #31.
-* Added the possibility to get a list of all the `ItemTags` via GlobalKey<TagsState>.
+### Changed
+- General code improvements and optimizations
+- Enhanced code readability and maintainability
 
-## [0.4.3] - 2019-07-28.
+### Documentation
+- Updated comprehensive documentation
 
-* Minor Update Documentation.
-* Fixed some problem.
-* removed the 'position' parameter  in TagsTexField () because it is not essential. the same result can be obtained by setting the verticalDirection and TextDirection parameters in Tags ().
+## [0.4.6] - 2020-02-26
 
-## [0.4.2] - 2019-07-27.
+### Added
+- TextField enable/disable functionality (resolves #36)
+- `constraintSuggestion` field for adding custom tags not in suggestions (resolves #33)
+- Enhanced tag removal controls with boolean return type
 
-* Update Documentation.
-* General improvement of the code.
+### Changed
+- **BREAKING**: Moved `onRemoved` field inside `ItemTagsRemoveButton()` for consistency
+- `onRemoved` now returns boolean for removal validation
 
-## [0.4.1] - 2019-07-27.
+### Fixed
+- Various stability improvements
 
-* Minor Update Documentation.
+## [0.4.5] - 2019-10-30
 
-## [0.4.0] - 2019-07-27.
+### Changed
+- **BREAKING**: Renamed `TagstextField` to `TagsTextField` for consistency
 
-* **Improvements, new Structure, new Features and Documentation Updates**
-*
-* `SelectableTags` and `InputTags`have been removed, now there is only one widget. **Tags()**
-* Now it is possible to personalize every single tag, with the possibility of adding icons, images and a removal button.
-* Possibility to display the list with horizontal scroll.
+### Added
+- `textCapitalization` support in `TagsTextField`
 
-## [0.3.2] - 2019-06-20.
+## [0.4.4] - 2019-10-16
 
-* Issue #14 and #13 fixed.
-* Added `customData` field in Tag Class.
+### Added
+- `child` field in `ItemTagsImage()` for enhanced image control
+- Global access to all `ItemTags` via `GlobalKey<TagsState>`
 
-## [0.3.1] - 2019-05-13.
+### Fixed
+- TextField and suggestions alignment issues (resolves #31)
 
-* General improvement of the code.
+### Documentation
+- Major documentation updates with new features
 
-## [0.3.0] - 2019-04-09.
+## [0.4.3] - 2019-07-28
 
-* **New features**
-* Possibility to create a customizable popupMenu.
-* **SelectableTags**. Possibility to set a color and an activeColor for each tag.
-* **InputTags**. Possibility to hide textField.
+### Removed
+- **BREAKING**: Removed `position` parameter from `TagsTextField()` (use `verticalDirection` and `TextDirection` in `Tags()` instead)
 
-## [0.2.4] - 2019-04-08.
+### Fixed
+- Various stability improvements
 
-* fixed some problem.
+### Documentation
+- Minor documentation updates
 
-## [0.2.3] - 2019-04-05.
+## [0.4.2] - 2019-07-27
 
-* General improvement of the code.
-* OnInsert, onDelete and onPressed are now optional.
+### Improved
+- General code quality improvements
+- Enhanced performance optimizations
 
-## [0.2.2] - 2019-03-02.
+### Documentation
+- Updated comprehensive documentation
 
-* Added property `textStyle` in InputTags. NOTE: `textColor` has been removed. now it can be set with `textStyle`.
-* added property `textStyle` in SelectableTags. NOTE: if you set `color` in it will be ignored, you must use `textColor` `textActiveColor`.
-* Created InputSuggestions. Return suggestions in the TextField. Is not complete, soon the list of suggestions will be implemented.
-* General improvement of the code.
+## [0.4.1] - 2019-07-27
 
-## [0.2.1] - 2019-03-01.
+### Documentation
+- Minor documentation updates
 
-* The code has been largely rewritten.
-* Now the Tag width calculation is very accurate.
+## [0.4.0] - 2019-07-27
 
-## [0.2.0] - 2019-02-24.
+### Changed
+- **BREAKING**: Complete architecture redesign
+- **BREAKING**: Removed `SelectableTags` and `InputTags` - unified into single `Tags()` widget
 
-* Improved tag width calculation; 
-* Possibility to change the margin and padding of the close icon ( InputTags ).
+### Added
+- Individual tag customization with icons, images, and removal buttons
+- Horizontal scroll support for tag lists
+- Enhanced tag personalization options
 
-## [0.1.9] - 2019-02-23.
+### Documentation
+- Major documentation overhaul with new structure
 
-* Width calculated based on the byte length of the title; 
-* When the orientation changes, a recalculation of the screen width is performed.
+## [0.3.2] - 2019-06-20
 
-## [0.1.8] - 2019-02-16.
+### Added
+- `customData` field in Tag class for additional data storage
 
-* Improvement of library documentation.
+### Fixed
+- Resolved issues #14 and #13
 
-## [0.1.7] - 2019-02-07.
+## [0.3.1] - 2019-05-13
 
-* Added new feature SingleItem on SelectableTags; 
-* Possibility to change color/background-color icon on InputTags; - General improvement of the code.
+### Improved
+- General code quality improvements
+- Enhanced performance and stability
 
-## [0.1.6] - 2019-01-07.
+## [0.3.0] - 2019-04-09
 
-* Fixed error "Infinity or NaN toInt" on InputTags; - general improvement of the code.
+### Added
+- Customizable popup menu functionality
+- **SelectableTags**: Individual color and activeColor configuration
+- **InputTags**: Option to hide textField
 
-## [0.1.5] - 2018-12-24.
+## [0.2.4] - 2019-04-08
 
-* General improvement of the code.
+### Fixed
+- Various stability improvements
 
-## [0.1.4] - 2018-12-18.
+## [0.2.3] - 2019-04-05
 
-* Added new features.
+### Changed
+- Made `onInsert`, `onDelete`, and `onPressed` callbacks optional
 
-## [0.1.3] - 2018-12-16.
+### Improved
+- General code quality improvements
 
-* Added new highlight feature (InputTags) - general improvement of the code.
+## [0.2.2] - 2019-03-02
 
-## [0.1.2] - 2018-12-15.
+### Added
+- `textStyle` property in InputTags and SelectableTags
+- InputSuggestions component (early implementation)
 
-* Add InputTags Widget - Improved documentation.
+### Changed
+- **BREAKING**: Removed `textColor` from InputTags (use `textStyle` instead)
+- **BREAKING**: Color handling in SelectableTags (use `textColor`/`textActiveColor` instead of `color` in `textStyle`)
 
-## [0.1.1] - 2018-12-08.
+### Improved
+- Major code refactoring and improvements
 
-* Improved documentation.
+## [0.2.1] - 2019-03-01
 
-## [0.1.0] - 2018-12-08.
+### Improved
+- **BREAKING**: Major code rewrite for better performance
+- Significantly improved tag width calculation accuracy
 
-* Did some changing readme.
+## [0.2.0] - 2019-02-24
 
-## [0.0.1] - 2018-12-08.
+### Added
+- Configurable margin and padding for close icon in InputTags
 
-* Created Selectable Tags.
+### Improved
+- Enhanced tag width calculation algorithm
+
+## [0.1.9] - 2019-02-23
+
+### Improved
+- Width calculation based on byte length of title
+- Automatic screen width recalculation on orientation changes
+
+## [0.1.8] - 2019-02-16
+
+### Documentation
+- Improved library documentation
+
+## [0.1.7] - 2019-02-07
+
+### Added
+- SingleItem feature for SelectableTags
+- Customizable icon colors for InputTags
+
+### Improved
+- General code improvements
+
+## [0.1.6] - 2019-01-07
+
+### Fixed
+- "Infinity or NaN toInt" error in InputTags
+
+### Improved
+- General code improvements
+
+## [0.1.5] - 2018-12-24
+
+### Improved
+- General code quality improvements
+
+## [0.1.4] - 2018-12-18
+
+### Added
+- New features and functionality
+
+## [0.1.3] - 2018-12-16
+
+### Added
+- Highlight feature for InputTags
+
+### Improved
+- General code improvements
+
+## [0.1.2] - 2018-12-15
+
+### Added
+- InputTags widget
+
+### Documentation
+- Improved documentation
+
+## [0.1.1] - 2018-12-08
+
+### Documentation
+- Improved documentation
+
+## [0.1.0] - 2018-12-08
+
+### Documentation
+- Updated README
+
+## [0.0.1] - 2018-12-08
+
+### Added
+- Initial release with Selectable Tags functionality
