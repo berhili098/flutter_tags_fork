@@ -1,3 +1,7 @@
+## [1.0.1] - 2025-05-27.
+
+* `[Fixed]` - Readme demo images.
+
 ## [1.0.0] - 2025-05-27.
 
 * `[Updated]` - Flutter to the latest version 3.32.0.
