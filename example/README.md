@@ -8,7 +8,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_tags/flutter_tags.dart';
+import 'package:flutter_tags_fork/flutter_tags_fork.dart';
 
 void main() => runApp(MyApp());
 
@@ -755,8 +755,8 @@ class _MyHomePageState extends State<MyHomePage>
 ```
 
 ## DEMO
-![Demo 1](https://github.com/Dn-a/flutter_tags/raw/master/repo-file/img/example0.4.0_1.gif)
-![Demo 1](https://github.com/Dn-a/flutter_tags/raw/master/repo-file/img/example0.4.0_2.gif)
+![Demo 1](https://github.com/Dn-a/flutter_tags_fork/raw/master/repo-file/img/example0.4.0_1.gif)
+![Demo 1](https://github.com/Dn-a/flutter_tags_fork/raw/master/repo-file/img/example0.4.0_2.gif)
 
 ## Other
 This project is a starting point for a Flutter application.

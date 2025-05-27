@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_tags/flutter_tags.dart';
+import 'package:flutter_tags_fork/flutter_tags_fork.dart';
 
 void main() => runApp(const MyApp());
 

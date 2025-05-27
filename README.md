@@ -1,5 +1,5 @@
-# flutter_tags
-[![pub package](https://img.shields.io/badge/pub-0.4.9+1-orange.svg)](https://pub.dartlang.org/packages/flutter_tags)
+# flutter_tags_fork
+[![pub package](https://img.shields.io/badge/pub-0.4.9+1-orange.svg)](https://pub.dartlang.org/packages/flutter_tags_fork)
 [![Awesome Flutter](https://img.shields.io/badge/Awesome-Flutter-blue.svg?longCache=true&style=flat-square)](https://github.com/Solido/awesome-flutter#ui)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/dnag88)
 
@@ -9,7 +9,7 @@ Create beautiful tags quickly and easily.
 Add this to your package's pubspec.yaml file:
 ```dart
 dependencies:
-  flutter_tags: "^0.4.9+1"
+  flutter_tags_fork: "^0.4.9+1"
 ```
 
 
@@ -19,10 +19,10 @@ dependencies:
 <table>
 <tr>
 <td style="text-align:center">
- <img width = "250px" src="https://github.com/Dn-a/flutter_tags/raw/master/repo-file/img/example0.4.0_1.gif" />
+ <img width = "250px" src="https://github.com/Dn-a/flutter_tags_fork/raw/master/repo-file/img/example0.4.0_1.gif" />
  </td>
  <td style="text-align:center">
-  <img width = "250px" src="https://github.com/Dn-a/flutter_tags/raw/master/repo-file/img/example0.4.0_2.gif" />
+  <img width = "250px" src="https://github.com/Dn-a/flutter_tags_fork/raw/master/repo-file/img/example0.4.0_2.gif" />
   </td>
 </tr>
 </table>
@@ -32,7 +32,7 @@ dependencies:
 ## Simple usage
 ```dart
 
-import 'package:flutter_tags/flutter_tags.dart';
+import 'package:flutter_tags_fork/flutter_tags_fork.dart';
 .
 .
 .

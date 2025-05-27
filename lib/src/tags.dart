@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../flutter_tags.dart';
+import '../flutter_tags_fork.dart';
 import 'util/custom_wrap.dart';
 
 ///ItemBuilder
@@ -252,7 +252,7 @@ class DataList extends ValueNotifier implements Item {
   final dynamic customData;
   final int? index;
 
- bool get showDuplicate {
+  bool get showDuplicate {
     final val = _showDuplicate;
     _showDuplicate = false;
     return val;
