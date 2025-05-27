@@ -1,5 +1,3 @@
-import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_tags/src/tags.dart';
 
@@ -357,7 +355,7 @@ class _ItemTagsState extends State<ItemTags> {
                   ),
                   onTap: () {
                     if (widget.removeButton?.onRemoved != null) {
-                      widget.removeButton?.onRemoved.call();
+                      widget.removeButton?.onRemoved?.call();
                       _dataListInherited.list.removeAt(widget.index);
                     }
                   },
