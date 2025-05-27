@@ -166,19 +166,13 @@ class _ItemTagsState extends State<ItemTags> {
               index: widget.index,
               active: widget.singleItem ? false : widget.active,
               customData: widget.customData));
-    } else if (_dataListInherited.list.elementAt(widget.index) == '') {
-      //print("replace");
-      _dataListInherited.list[widget.index] = DataList(
-          title: widget.title,
-          index: widget.index,
-          active: widget.singleItem ? false : widget.active,
-          customData: widget.customData);
     }
 
     // removes items that have been orphaned
     if (_dataListInherited.itemCount == widget.index + 1 &&
-        _dataListInherited.list.length > _dataListInherited.itemCount)
+        _dataListInherited.list.length > _dataListInherited.itemCount) {
       _dataListInherited.list.removeRange(widget.index + 1, _dataListInherited.list.length);
+    }
 
     //print(_dataListInherited.list.length);
 
