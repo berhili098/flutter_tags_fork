@@ -10,11 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fixed null type casting error in DataList operations that caused `_TypeError (type 'Null' is not a subtype of type 'DataList' in type cast)`
 
-## [1.0.4] - 2024-05-27
+## [1.0.5] - 2024-05-27
 
 ### Fixed
 - Format code formatting and style
 - Improved code readability and maintainability
+
 ## [1.0.3] - 2024-05-27
 
 ### Fixed

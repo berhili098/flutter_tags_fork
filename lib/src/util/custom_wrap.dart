@@ -560,8 +560,9 @@ class CustomRenderWrap extends RenderBox
           break;
         case WrapAlignment.end:
           childLeadingSpace = mainAxisFreeSpace;
-          if (symmetry == true)
+          if (symmetry == true) {
             childLeadingSpace = mainAxisFreeSpace - spacing / 2;
+          }
           break;
         case WrapAlignment.center:
           childLeadingSpace = mainAxisFreeSpace / 2.0;

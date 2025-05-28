@@ -195,8 +195,9 @@ class TagsState extends State<Tags> {
       return item;
     });
 
-    if (widget.horizontalScroll && widget.textDirection == TextDirection.rtl)
+    if (widget.horizontalScroll && widget.textDirection == TextDirection.rtl) {
       itemList = itemList.reversed.toList();
+    }
 
     if (textField == null) {
       finalList.addAll(itemList);

@@ -201,7 +201,7 @@ class ItemTagsState extends State<ItemTags> {
     _dataList.addListener(_didValueChange);
   }
 
-  _didValueChange() => setState(() {});
+  void _didValueChange() => setState(() {});
 
   @override
   void dispose() {
